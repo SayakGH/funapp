@@ -37,8 +37,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     res.json({
       user: { username, pollars: 10000, rebirths: 0, id: newUser.id },
     });
-  } catch (error) {
-    console.error("Register error:", error);
-    res.status(500).json({ error: "Internal server error" });
+  } catch (error: any) {
+    console.error("Register error:", error?.message || error);
+    res.status(500).json({ error: "Internal server error", details: error?.message });
   }
 }

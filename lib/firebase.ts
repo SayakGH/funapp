@@ -1,5 +1,3 @@
-import fs from "fs";
-import path from "path";
 import { initializeApp } from "firebase/app";
 import {
   getFirestore,
@@ -13,14 +11,7 @@ import {
   orderBy,
   limit,
 } from "firebase/firestore";
-
-// Load Firebase configuration
-const firebaseConfig = JSON.parse(
-  fs.readFileSync(
-    path.join(process.cwd(), "firebase-applet-config.json"),
-    "utf8",
-  ),
-);
+import { firebaseConfig } from "./firebaseConfig";
 
 export const firebaseApp = initializeApp(firebaseConfig);
 export const db = getFirestore(firebaseApp, firebaseConfig.firestoreDatabaseId);

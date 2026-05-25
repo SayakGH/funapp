@@ -9,8 +9,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
     const top10 = await MockDynamoDB.getTop10Users();
     res.json({ leaderboard: top10 });
-  } catch (error) {
-    console.error("Leaderboard error:", error);
-    res.status(500).json({ error: "Internal server error" });
+  } catch (error: any) {
+    console.error("Leaderboard error:", error?.message || error);
+    res.status(500).json({ error: "Internal server error", details: error?.message });
   }
 }

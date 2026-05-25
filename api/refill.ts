@@ -42,8 +42,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         id: updatedUser.id,
       },
     });
-  } catch (error) {
-    console.error("Refill error:", error);
-    res.status(500).json({ error: "Internal server error" });
+  } catch (error: any) {
+    console.error("Refill error:", error?.message || error);
+    res.status(500).json({ error: "Internal server error", details: error?.message });
   }
 }
