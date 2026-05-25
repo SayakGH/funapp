@@ -1,5 +1,5 @@
 import { VercelRequest, VercelResponse } from "@vercel/node";
-import { MockDynamoDB } from "@/lib/firebase";
+import { MockDynamoDB } from "../lib/firebase";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "GET") {
@@ -11,6 +11,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     res.json({ leaderboard: top10 });
   } catch (error: any) {
     console.error("Leaderboard error:", error?.message || error);
-    res.status(500).json({ error: "Internal server error", details: error?.message });
+    res
+      .status(500)
+      .json({ error: "Internal server error", details: error?.message });
   }
 }

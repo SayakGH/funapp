@@ -7,5 +7,5 @@ export const firebaseConfig = {
   firestoreDatabaseId: "ai-studio-7c17152c-fdc1-4b05-9ef6-0782f45eb039",
   storageBucket: "gen-lang-client-0352587537.firebasestorage.app",
   messagingSenderId: "30797462564",
-  measurementId: ""
+  measurementId: "",
 };

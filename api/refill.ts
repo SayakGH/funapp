@@ -1,5 +1,5 @@
 import { VercelRequest, VercelResponse } from "@vercel/node";
-import { MockDynamoDB } from "@/lib/firebase";
+import { MockDynamoDB } from "../lib/firebase";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {
@@ -44,6 +44,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     });
   } catch (error: any) {
     console.error("Refill error:", error?.message || error);
-    res.status(500).json({ error: "Internal server error", details: error?.message });
+    res
+      .status(500)
+      .json({ error: "Internal server error", details: error?.message });
   }
 }
