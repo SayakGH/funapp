@@ -1,0 +1,29 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function incoming() {  return request.resource.data; }
+    function existing() { return resource.data; }
+
+    function isValidUser(data) {
+      return data.keys().hasAll(['username', 'email', 'pollars', 'rebirths']);
+    }
+
+    match /users/{userId} {
+      // Allow read so queries on username/email work without complaining about missing index/secret
+      allow read: if true;
+      
+      allow create: if incoming().serverSecret == 'pollars-royale-v1' &&
+                       isValidUser(incoming());
+                       
+      allow update: if incoming().serverSecret == 'pollars-royale-v1' &&
+                       isValidUser(incoming());
+                       
+      allow delete: if false;
+    }
+  }
+}

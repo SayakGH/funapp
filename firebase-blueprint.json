@@ -1,0 +1,23 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile with game balances.",
+      "type": "object",
+      "properties": {
+        "username": { "type": "string", "description": "Display name of the user" },
+        "email": { "type": "string", "description": "User's email address" },
+        "pollars": { "type": "number", "description": "User's currency balance" },
+        "rebirths": { "type": "number", "description": "Number of times user has reset" },
+        "createdAt": { "type": "string", "description": "Timestamp of creation" }
+      },
+      "required": ["username", "email", "pollars", "rebirths", "createdAt"]
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "Stores user profiles."
+    }
+  }
+}
