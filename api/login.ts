@@ -1,7 +1,6 @@
 import { VercelRequest, VercelResponse } from "@vercel/node";
 import bcrypt from "bcryptjs";
-import { v4 as uuidv4 } from "uuid";
-import { MockDynamoDB } from "../lib/firebase";
+import { MockDynamoDB } from "./firebase";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {
